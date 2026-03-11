@@ -10,7 +10,7 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Drakind - Streaming Drama Pendek",
-  description: "Nonton drama pendek gratis dan tanpa iklan di SekaiDrama.",
+  description: "Nonton drama pendek gratis dan tanpa iklan di Drakin..",
 };
 
 export default function RootLayout({
