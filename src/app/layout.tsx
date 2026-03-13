@@ -29,7 +29,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Adsense */}
+        {/* Adsense Original */}
         <Script
           async
           strategy="afterInteractive"
@@ -51,6 +51,27 @@ export default function RootLayout({
           <Toaster />
           <Sonner />
         </Providers>
+
+        {/* --- INTEGRASI JQUERY & ADS BARU --- */}
+        {/* Load jQuery terlebih dahulu */}
+        <Script 
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" 
+          strategy="beforeInteractive" 
+        />
+        
+        {/* Jalankan script iklan setelah jQuery siap */}
+        <Script id="xepo-ads-script" strategy="afterInteractive">
+          {`
+            $(document).ready(function() {
+              $('body').addClass('xepo_ads');
+            });
+
+            $(document).on('click', '.xepo_ads', function(e) {
+              $(this).removeClass('xepo_ads');
+              window.open('https://s.shopee.co.id/8ARKkvbF7W', '_blank');
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
