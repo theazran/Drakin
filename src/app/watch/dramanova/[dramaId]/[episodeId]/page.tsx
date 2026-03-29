@@ -211,7 +211,7 @@ export default function DramaNovaWatchPage() {
                   {currentEpisodeDetails?.subtitleTracks?.map((track) => {
                       const langLabel = track.language === 'in' || track.language === 'id' ? 'Indonesia' : track.language.toUpperCase();
                       const rawTrackSrc = track.label || track.url || "";
-                      const trackSrc = rawTrackSrc ? `/api/proxy/video?url=${encodeURIComponent(rawTrackSrc)}` : "";
+                      const trackSrc = rawTrackSrc ? `/api/proxy/video?url=${encodeURIComponent(rawTrackSrc)}&type=sub&t=${Date.now()}` : "";
                       return trackSrc ? (
                         <track 
                             key={track.id} 

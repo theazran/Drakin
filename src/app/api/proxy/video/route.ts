@@ -139,7 +139,7 @@ export async function GET(req: NextRequest) {
                    contentType.includes("application/x-mpegurl") ||
                    lowUrl.includes(".m3u8");
                    
-    const isVtt = contentType.includes("text/vtt") || lowUrl.endsWith(".vtt") || lowUrl.endsWith(".srt");
+    const isVtt = contentType.includes("text/vtt") || lowUrl.endsWith(".vtt") || lowUrl.endsWith(".srt") || urlParams.get("type") === "sub";
 
     // 3. IF BINARY (MP4, TS, etc) -> STREAM DIRECTLY
     if (!isM3u8 && !isVtt && (lowUrl.includes(".mp4") || lowUrl.includes(".ts") || contentType.includes("video/"))) {
@@ -232,9 +232,9 @@ export async function GET(req: NextRequest) {
     }
 
     // VTT/SRT Logic
-    if (isVtt || lowUrl.endsWith(".srt")) {
+    if (isVtt || lowUrl.endsWith(".srt") || urlParams.get("type") === "sub") {
        let vttContent = decoder.decode(buffer);
-       const isSrt = lowUrl.includes(".srt");
+       const isSrt = lowUrl.includes(".srt") || urlParams.get("type") === "sub";
        
        if (isSrt && !firstChunk.includes("WEBVTT")) {
            vttContent = vttContent.replace(/\r\n/g, '\n')
